@@ -51,7 +51,7 @@ make.anova.table <- function(models, type = "III", formatted = TRUE,
       output[[i]]$df = paste0(output[[i]]$Df, ", ", tail(output[[i]]$Df, n = 1))
       output[[i]] = dplyr::select(output[[i]], -Df)
     }
-    if (str_detect(class(models[[i]]), "lmer") == TRUE) {
+    if (stringr::str_detect(class(models[[i]]), "lmer") == TRUE) {
       output[[i]]$df = paste0(output[[i]]$Df, ", ", ifelse(output[[i]]$Df.res <10, round(output[[i]]$Df.res, 2), 
                                                            ifelse(output[[i]]$Df.res >= 10, round(output[[i]]$Df.res, 1), NA)))
       output[[i]] = dplyr::select(output[[i]], -Df, -Df.res)
