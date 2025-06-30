@@ -204,7 +204,7 @@ make_lm_table <- function(models, formatted = T, sig_stars = F,
     }
     if (cohens_d == TRUE) {
       formatted_ds = paste0(
-        table$Result, ", d = ", formatted_round(table$d.est),
+        ", d = ", formatted_round(table$d.est),
         ", ", round(ci_level * 100, 2), "% CI [",
         formatted_round(table$d.CI.lower), ", ",
         formatted_round(table$d.CI.upper), "]"
@@ -216,7 +216,7 @@ make_lm_table <- function(models, formatted = T, sig_stars = F,
             paste0(table$Result, formatted_ds),
           .default = table$Result)
       } else {
-        table$Result = table$Result, formatted_ds
+        table$Result = paste0(table$Result, formatted_ds)
       }
     }
     if (OR == TRUE) {
