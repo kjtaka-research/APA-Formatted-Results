@@ -216,7 +216,7 @@ make_lm_table <- function(models, formatted = T, sig_stars = F,
             paste0(table$Result, formatted_ds),
           .default = table$Result)
       } else {
-        table$Result = paste0(table$Result, formatted_ds)
+        table$Result = table$Result, formatted_ds
       }
     }
     if (OR == TRUE) {
