@@ -47,6 +47,25 @@
 make_anova_table <- function(models, type = "III", formatted = TRUE,
                              partial = TRUE, eta_ci = .9, eta_digits = 2,
                              model_names = NULL) {
+  formatted_round = function(x, decimal_places = 2, remove_lead0 = F, p_value = F) {
+  if (p_value == TRUE) {
+    rounded.x = ifelse(x < .001, "< .001", sub("^0+", "", format(round(x, 3), nsmall = 3)))
+  } else {
+    rounded.x = trimws(format(round(x, decimal_places), nsmall = decimal_places), which = "both")
+    if (remove_lead0 == T) {
+      rounded.x = sub("^(-?)0.", "\\1.", rounded.x)
+    }
+  }
+  rounded.x
+}
+  p_stars <- function(p_values) {
+  dplyr::case_when(
+    p_values < .001 ~ "***",
+    p_values > .001 & p_values < .01 ~ "**",
+    p_values > .01 & p_values < .05 ~ "*",
+    p_values > .05 & p_values < .1 ~ "`",
+    .default = "")
+}
   output = list()
   # Making it so that the models argument can accommodate a single model and not just a list
   if (class(models) != "list") {
