@@ -35,7 +35,7 @@
 #' @param new_coef_names Description here.
 #' @param ci Use confint function to get confidence intervals for betas
 #' @param ci_method Change default method for the confint function. The default
-#'   is profile confidence intervals. Other options are "Wald" and "bootstrap".
+#'   is set to Wald confidence intervals. Other options are "profile" and "bootstrap".
 #'   For lmer models, the default of "profile" and the "bootstrap" options are
 #'   often recommended but take longer to run. "Wald" confidence intervals
 #'   take less time to run.
@@ -71,7 +71,7 @@ make_lm_table <- function(models, formatted = T, sig_stars = F,
                           model_names = NULL,
                           side_by_side = F, rename_coef = F,
                           old_coef_names = NULL, new_coef_names = NULL,
-                          ci = F, ci_method = "profile", ci_level = .95,
+                          ci = F, ci_method = "Wald", ci_level = .95,
                           cohens_d = F, sd.pooled = NULL,
                           d_contrast = c(-0.5, 0.5), d_which = NULL,
                           OR = F, OR_models = NULL
